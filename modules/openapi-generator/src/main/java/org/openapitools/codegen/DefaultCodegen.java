@@ -1196,7 +1196,7 @@ public class DefaultCodegen implements CodegenConfig {
 
         if (content.size() > 1) {
             // @see ModelUtils.getSchemaFromContent()
-            LOGGER.warn("Multiple MediaTypes found, using only the first one");
+            // LOGGER.warn("Multiple MediaTypes found, using only the first one");
         }
 
         MediaType mediaType = content.values().iterator().next();
@@ -2443,7 +2443,7 @@ public class DefaultCodegen implements CodegenConfig {
                 } else if (param instanceof CookieParameter || "cookie".equalsIgnoreCase(param.getIn())) {
                     cookieParams.add(p.copy());
                 } else {
-                    LOGGER.warn("Unknown parameter type " + p.baseType + " for " + p.baseName);
+                    // LOGGER.warn("Unknown parameter type " + p.baseType + " for " + p.baseName);
                 }
 
             }
@@ -2983,7 +2983,7 @@ public class DefaultCodegen implements CodegenConfig {
         } else if (parameter instanceof CookieParameter || "cookie".equalsIgnoreCase(parameter.getIn())) {
             codegenParameter.isCookieParam = true;
         } else {
-            LOGGER.warn("Unknown parameter type: " + parameter.getName());
+            // LOGGER.warn("Unknown parameter type: " + parameter.getName());
         }
 
         // default to UNKNOWN_PARAMETER_NAME if paramName is null
@@ -4311,8 +4311,8 @@ public class DefaultCodegen implements CodegenConfig {
                     if (codegenParameter.baseType != null && codegenParameter.enumName != null) {
                         codegenParameter.datatypeWithEnum = codegenParameter.dataType.replace(codegenParameter.baseType, codegenParameter.enumName);
                     } else {
-                        LOGGER.warn("Could not compute datatypeWithEnum from " + codegenParameter.baseType + ", " + codegenParameter.enumName);
-                        LOGGER.warn("---> schema property: " + entry.getKey());
+                        // LOGGER.warn("Could not compute datatypeWithEnum from " + codegenParameter.baseType + ", " + codegenParameter.enumName);
+                        // LOGGER.warn("---> schema property: " + entry.getKey());
                     }
 
                     // Copy extensions from the main schema property.
