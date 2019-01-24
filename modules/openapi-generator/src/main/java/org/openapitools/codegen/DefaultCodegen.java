@@ -1375,7 +1375,7 @@ public class DefaultCodegen implements CodegenConfig {
             return "UUID";
         } else if (ModelUtils.isStringSchema(schema)) {
             return "string";
-        } else if (schema.getProperties() != null && !schema.getProperties().isEmpty()) { // having property implies it's a model
+        } else if (ModelUtils.isObjectSchema(schema)) {
             return "object";
         } else if (StringUtils.isNotEmpty(schema.getType())) {
             LOGGER.warn("Unknown type found in the schema: " + schema.getType());
@@ -2377,6 +2377,7 @@ public class DefaultCodegen implements CodegenConfig {
 
         CodegenParameter bodyParam = null;
         RequestBody requestBody = operation.getRequestBody();
+        requestBody = ModelUtils.getReferencedRequestBody(openAPI, requestBody);
         if (requestBody != null) {
             if ("application/x-www-form-urlencoded".equalsIgnoreCase(getContentType(requestBody)) ||
                     "multipart/form-data".equalsIgnoreCase(getContentType(requestBody))) {
@@ -4311,7 +4312,18 @@ public class DefaultCodegen implements CodegenConfig {
                         codegenParameter.datatypeWithEnum = codegenParameter.dataType.replace(codegenParameter.baseType, codegenParameter.enumName);
                     } else {
                         LOGGER.warn("Could not compute datatypeWithEnum from " + codegenParameter.baseType + ", " + codegenParameter.enumName);
+                        LOGGER.warn("---> schema property: " + entry.getKey());
                     }
+
+                    // Copy extensions from the main schema property.
+                    // This is needed in the array case since we built the codegen parameter from the inner schema,
+                    // and not the main schema property.
+                    // We'll end up with the codegen parameter having the extensions from both the inner schema AND
+                    // the main schema property.
+                    if (s.getExtensions() != null) {
+                        codegenParameter.vendorExtensions.putAll(s.getExtensions());
+                    }
+
                     //TODO fix collectformat for form parameters
                     //collectionFormat = getCollectionFormat(s);
                     // default to csv:

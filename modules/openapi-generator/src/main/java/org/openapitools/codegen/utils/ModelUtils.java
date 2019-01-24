@@ -642,7 +642,7 @@ public class ModelUtils {
         if (name == null) {
             return null;
         }
-        
+
         if (openAPI != null && openAPI.getComponents() != null && openAPI.getComponents().getCallbacks() != null) {
             return openAPI.getComponents().getCallbacks().get(name);
         }
@@ -703,6 +703,8 @@ public class ModelUtils {
                 return schema;
             } else if (isArraySchema(ref) || isComposedSchema(ref)) { // array def should be created as models
                 return schema;
+            } else if (isObjectSchema(ref)) { // model
+                return schema;
             } else if (isMapSchema(ref)) {
                 if (ref.getProperties() != null && !ref.getProperties().isEmpty()) // has properties
                     return schema; // treat it as model
@@ -719,8 +721,6 @@ public class ModelUtils {
                     }*/
                     return unaliasSchema(allSchemas, allSchemas.get(ModelUtils.getSimpleRef(schema.get$ref())));
                 }
-            } else if (isObjectSchema(ref)) { // model
-                return schema;
             } else {
                 return unaliasSchema(allSchemas, allSchemas.get(ModelUtils.getSimpleRef(schema.get$ref())));
             }
