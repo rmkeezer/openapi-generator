@@ -3,7 +3,7 @@
     <parent>
         <groupId>org.openapitools</groupId>
         <artifactId>openapi-generator-project</artifactId>
-        <version>3.3.3-ibm2</version>
+        <version>3.3.3-ibm3</version>
         <relativePath>../..</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -280,6 +280,10 @@
         </dependency>
     </dependencies>
     <repositories>
+	<repository>
+            <id>na-artifactory-sdkcodegen</id>
+            <url>https://na.artifactory.swg-devops.com:443/artifactory/wcp-sdkcodegen-maven-local/</url>
+	</repository>
         <repository>
             <id>sonatype-snapshots</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
