@@ -9,7 +9,7 @@
     <artifactId>openapi-generator-project</artifactId>
     <packaging>pom</packaging>
     <name>openapi-generator-project</name>
-    <version>3.3.3-ibm4</version>
+    <version>3.3.3-ibm5</version>
     <url>https://github.com/openapitools/openapi-generator</url>
     <scm>
         <connection>scm:git:git@github.com:openapitools/openapi-generator.git</connection>
@@ -1344,7 +1344,7 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <swagger-parser-version>2.0.8-ibm1</swagger-parser-version>
+        <swagger-parser-version>2.0.8-ibm2</swagger-parser-version>
         <swagger-core-version>2.0.7-ibm1</swagger-core-version>
         <scala-version>2.11.1</scala-version>
         <felix-version>3.3.1</felix-version>
