@@ -3412,7 +3412,7 @@ public class DefaultCodegen implements CodegenConfig {
                     }
                 }
 
-                if (cp.isContainer) {
+                if (cp.isListContainer) {
                     addImport(m, typeMapping.get("array"));
                 }
 
