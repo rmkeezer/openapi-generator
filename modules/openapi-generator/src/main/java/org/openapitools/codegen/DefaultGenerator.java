@@ -264,9 +264,8 @@ public class DefaultGenerator extends AbstractGenerator implements Generator {
         for (String templateName : config.modelTestTemplateFiles().keySet()) {
             String suffix = config.modelTestTemplateFiles().get(templateName);
             String filename = config.modelTestFileFolder() + File.separator + config.toModelTestFilename(modelName) + suffix;
-            // do not overwrite test file that already exists
-            if (new File(filename).exists()) {
-                LOGGER.info("File exists. Skipped overwriting " + filename);
+            if (!config.shouldOverwrite(filename)) {
+                LOGGER.info("Skipped overwriting " + filename);
                 continue;
             }
             File written = processTemplateToFile(models, templateName, filename);
