@@ -733,7 +733,7 @@ public class ModelUtils {
             return (Schema) schema.getAdditionalProperties();
         }
         if (schema.getAdditionalProperties() instanceof Boolean && (Boolean) schema.getAdditionalProperties()) {
-            return new ObjectSchema();
+            return new Schema();
         }
         return null;
     }
